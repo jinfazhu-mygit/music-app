@@ -1,0 +1,7 @@
+<!--pages/home-video/index.wxml-->
+<view class="video">
+  <view class="flex" wx:for="{{topMvs}}" wx:key="id">
+    <video-item-v1 item="{{item}}" bindtap="handleVideoItemClick" data-item="{{item}}"></video-item-v1>
+  </view>
+  <view wx:if="{{!hasMore}}" style="font-size: 24rpx;margin-bottom: 6rpx;">没有更多了~</view>
+</view>

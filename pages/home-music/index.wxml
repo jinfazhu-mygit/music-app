@@ -1,0 +1,24 @@
+<!--pages/home-music/index.wxml-->
+<!-- 搜索框 -->
+<van-search
+  disabled
+  background= '#fafafa'
+  shape= 'round'
+  placeholder= '请输入搜索关键字'
+  bind:click-input= 'handleSearchClick'
+/>
+<!-- 轮播图 -->
+<swiper class="swiper" indicator-dots autoplay circular style="height: {{bannerImageHeight}}px;">
+  <block wx:for="{{bannerList}}" wx:key="bannerId">
+    <swiper-item class="swiper-item">
+      <image class="swiper-image"
+             src="{{item.pic}}"
+             mode="widthFix"
+             bindload="handleSwiperImageLoaded"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 推荐歌曲 -->
+<view class="recommend-song">
+  <area-header title="推荐歌曲" rightText="更多" showRight="{{true}}"></area-header>
+</view>

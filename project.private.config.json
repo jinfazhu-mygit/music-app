@@ -1,0 +1,32 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "视频列表",
+          "pathName": "pages/home-video/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "视频播放详情",
+          "pathName": "pages/detail-video/index",
+          "query": "id=14480854",
+          "scene": null,
+          "launchMode": "default"
+        }
+      ]
+    }
+  }
+}
