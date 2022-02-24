@@ -28,7 +28,7 @@ image {
   color: #999;
 }
 
-.right image {
+.right image { 
   width: 56rpx;
   height: 56rpx;
   margin-top: 18rpx;
