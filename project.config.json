@@ -42,7 +42,7 @@
     "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.1",
+  "libVersion": "2.18.0",
   "appid": "wxaed3fb6a3cd590da",
   "projectname": "jfMusic",
   "debugOptions": {

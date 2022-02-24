@@ -7,6 +7,7 @@
   placeholder= '请输入搜索关键字'
   bind:click-input= 'handleSearchClick'
 />
+
 <!-- 轮播图 -->
 <swiper class="swiper" indicator-dots autoplay circular style="height: {{bannerImageHeight}}px;">
   <block wx:for="{{bannerList}}" wx:key="bannerId">
@@ -18,6 +19,7 @@
     </swiper-item>
   </block>
 </swiper>
+
 <!-- 推荐歌曲 -->
 <view class="recommend-song">
   <area-header title="推荐歌曲"></area-header>
@@ -25,3 +27,8 @@
     <song-item-v1 item="{{item}}"></song-item-v1>
   </block>
 </view>
+
+<!-- 热门歌单 -->
+<song-menu-area title="热门歌单" list="{{hotSongMenu}}"></song-menu-area>
+<!-- 华语歌单 -->
+<song-menu-area title="华语歌单" list="{{chineseSongMenu}}"></song-menu-area>

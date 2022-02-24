@@ -1,2 +1,4 @@
+# 下载的包
 /node_modules
+# 构建的包
 /miniprogram_npm
