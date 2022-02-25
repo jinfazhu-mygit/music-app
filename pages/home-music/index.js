@@ -18,6 +18,7 @@ Page({
       hotSongMenu: [],
       chineseSongMenu: [],
       recommendSongs: [], // 推荐歌曲列表
+      rankings: { 0: {}, 2: {}, 3: {} } // 歌曲榜单
     },
 
     /**
@@ -34,6 +35,9 @@ Page({
         const recommendSongs = res.tracks.slice(0, 6);
         this.setData({ recommendSongs });
       })
+      rankingStore.onState('newRanking', this.getRankingHandler(0));
+      rankingStore.onState('originRanking', this.getRankingHandler(2));
+      rankingStore.onState('upRanking', this.getRankingHandler(3));
     },
 
     // 获取网络请求
@@ -70,5 +74,22 @@ Page({
           bannerImageHeight: rect
         })
       })
+    },
+
+    onUnload: function() {
+    },
+
+    getRankingHandler: function(idx) {
+      return (res) => {
+        if(Object.keys(res).length <= 0) return;
+        const rankingName = res.name;
+        const coverUrl = res.coverImgUrl;
+        const songList = res.tracks.slice(0, 3);
+        const rankingObject = { rankingName, coverUrl, songList };
+        const rankingList = { ...this.data.rankings, [idx]:rankingObject };
+        this.setData({
+          rankings: rankingList
+        })
+      }
     }
 })

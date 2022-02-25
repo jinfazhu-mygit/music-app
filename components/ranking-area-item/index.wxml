@@ -1,0 +1,2 @@
+<!--components/rankingarea-item/index.wxml-->
+<view class="item">{{item.rankingName}}</view>
