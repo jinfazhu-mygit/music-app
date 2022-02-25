@@ -1,8 +1,30 @@
 <!--pages/detail-search/index.wxml-->
 <!-- 搜索框 -->
 <van-search
-  background= '#fafafa'
+  value="{{searchValue}}"
+  background= '#f7f7f7'
   shape= 'round'
   placeholder= '请输入搜索关键字'
-/>
-<!-- 轮播图 -->
+  bind:change="handleSearchChange"
+></van-search>
+<!-- 热门搜索 -->
+<view class="hot" wx:if="{{!searchValue.length && !suggest.length}}">
+  <area-header title="热门搜索" showRight="{{false}}"></area-header>
+  <view class="key-words">
+    <block wx:for="{{hotTags}}" wx:key="first">
+      <view class="tag">{{item.first}}</view>
+    </block>
+  </view>
+</view>
+<!-- 推荐歌曲 -->
+<view class="suggest" wx:if="{{searchValue.length}}">
+  <view class="title">搜索"{{searchValue}}"</view>
+  <view class="list">
+    <block wx:for="{{suggestSongs}}" wx:key="keyword">
+      <view class="item">
+        <image src="/assets/images/icons/search_icon.png" mode="widthFix"></image>
+        <text>{{item.keyword}}</text>
+      </view>
+    </block>
+  </view>
+</view>

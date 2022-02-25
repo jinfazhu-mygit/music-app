@@ -3,14 +3,6 @@ page {
   padding: 0 20rpx;
 }
 
-.van-search {
-  padding: 10px 0 !important;
-}
-
-.van-search__content {
-  background-color: #fff !important;
-}
-
 .swiper {
   border-radius: 10rpx;
   overflow: hidden;

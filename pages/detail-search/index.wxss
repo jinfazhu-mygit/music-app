@@ -1,4 +1,33 @@
 /* pages/detail-search/index.wxss */
-.van-search__content {
-  background-color: #fff !important;
+page {
+  padding: 0 20rpx;
+}
+
+.key-words {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.key-words .tag {
+  display: inline-block;
+  font-size: 36rpx;
+  margin: 10rpx 6rpx;
+  padding: 0 12rpx;
+  border-radius: 38rpx;
+  background-color: rgb(241, 241, 241);
+}
+
+.key-words .tag:first-of-type {
+  color: rgb(45, 214, 101);
+}
+
+.suggest {
+  display: flex;
+  flex-direction: column;
+}
+
+.suggest .list .item image {
+  width: 60rpx;
+  height: 60rpx;
+  display: inline-block;
 }

@@ -37,6 +37,13 @@
           "name": "歌单列表详情",
           "pathName": "pages/detail-songs/index",
           "query": "id=7044174061&type=menu",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "搜索页",
+          "pathName": "pages/detail-search/index",
+          "query": "",
           "scene": null,
           "launchMode": "default"
         }

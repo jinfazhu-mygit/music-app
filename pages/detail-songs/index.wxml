@@ -3,7 +3,7 @@
   <area-header title="{{songInfo.name}}" showRight="{{false}}"></area-header>
 </block>
 <block wx:if="{{type === 'menu'}}">
-  <view>歌单详情</view>
+  <song-detail-header songInfo="{{songInfo}}"></song-detail-header>
 </block>
  
 <view class="list">
