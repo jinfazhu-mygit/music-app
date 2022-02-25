@@ -1,5 +1,5 @@
 // 状态管理数据
-import { rankingStore } from '../../store/index';
+import { rankingStore, rankingMap } from '../../store/index';
 
 import { getBanners, getSongMenu } from '../../service/api-music';
 import queryRect from '../../utils/query-rect';
@@ -73,6 +73,22 @@ Page({
         this.setData({
           bannerImageHeight: rect
         })
+      })
+    },
+
+    handleMoreClick: function() {
+      this.navigateToDetailSongsPage("hotRanking");
+    },
+
+    handleRankingClick: function(event) {
+      const index = event.currentTarget.dataset.idx;
+      const rankingName = rankingMap[index];
+      this.navigateToDetailSongsPage(rankingName);
+    },
+
+    navigateToDetailSongsPage: function(rankingName) {
+      wx.navigateTo({
+        url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
       })
     },
 

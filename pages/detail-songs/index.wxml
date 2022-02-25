@@ -1,0 +1,13 @@
+<!--pages/detail-songs/index.wxml-->
+<block wx:if="{{type === 'rank'}}">
+  <area-header title="{{songInfo.name}}" showRight="{{false}}"></area-header>
+</block>
+<block wx:if="{{type === 'menu'}}">
+  <view>歌单详情</view>
+</block>
+ 
+<view class="list">
+  <block wx:for="{{songInfo.tracks}}" wx:key="id">
+    <song-item-v2 item="{{item}}" index="{{index+1}}"></song-item-v2>
+  </block>
+</view>

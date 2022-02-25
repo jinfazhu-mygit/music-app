@@ -5,12 +5,6 @@
   justify-content: center;
 }
 
-image {
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 14rpx;
-}
-
 .content {
   margin-left: 16rpx;
   flex: 1;
@@ -28,7 +22,7 @@ image {
   color: #999;
 }
 
-.right image { 
+.right .image { 
   width: 56rpx;
   height: 56rpx;
   margin-top: 18rpx;

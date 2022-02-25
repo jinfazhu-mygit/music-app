@@ -21,24 +21,24 @@
 </swiper>
 
 <!-- 推荐歌曲 -->
-<!-- <view class="recommend-song" wx:if="{{recommendSongs.length > 0}}">
-  <area-header title="推荐歌曲"></area-header>
-  <block wx:for="{{recommendSongs}}" wx:key="*this">
+<view class="recommend-song" wx:if="{{recommendSongs.length > 0}}">
+  <area-header title="推荐歌曲"  bind:click="handleMoreClick"></area-header>
+  <block wx:for="{{recommendSongs}}" wx:key="id">
     <song-item-v1 item="{{item}}"></song-item-v1>
   </block>
-</view> -->
+</view>
 
 <!-- 热门歌单 -->
-<!-- <song-menu-area title="热门歌单" wx:if="{{hotSongMenu.length > 0}}" list="{{hotSongMenu}}"></song-menu-area> -->
+<song-menu-area title="热门歌单" wx:if="{{hotSongMenu.length > 0}}" list="{{hotSongMenu}}"></song-menu-area>
 <!-- 华语歌单 -->
-<!-- <song-menu-area title="华语歌单" wx:if="{{chineseSongMenu.length > 0}}" list="{{chineseSongMenu}}"></song-menu-area> -->
+<song-menu-area title="华语歌单" wx:if="{{chineseSongMenu.length > 0}}" list="{{chineseSongMenu}}"></song-menu-area>
 
 <!-- 巅峰榜 -->
 <view class="ranking">
   <area-header title="巅峰榜" showRight="{{false}}"></area-header>
   <view class="ranking-list">
-    <block wx:for="{{rankings}}" wx:key="{{name}}">
-      <ranking-area-item item="{{item}}"></ranking-area-item>
+    <block wx:for="{{rankings}}" wx:key="rankingName">
+      <ranking-area-item item="{{item}}" bindtap="handleRankingClick" data-idx="{{index}}"></ranking-area-item>
     </block>
   </view>
 </view>

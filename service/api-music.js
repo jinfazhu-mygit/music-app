@@ -19,3 +19,9 @@ export function getSongMenu(cat="全部", limit=6, offset=0) {
     offset
   })
 }
+
+export function getPlayListDetail(id) {
+  return jfRequest.get("/playlist/detail/dynamic", {
+    id
+  })
+}

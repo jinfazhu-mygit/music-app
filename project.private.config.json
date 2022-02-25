@@ -23,6 +23,20 @@
           "name": "视频播放详情",
           "pathName": "pages/detail-video/index",
           "query": "id=14480854",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "榜单歌曲列表",
+          "pathName": "pages/detail-songs/index",
+          "query": "ranking=hotRanking",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "歌单列表详情",
+          "pathName": "pages/detail-songs/index",
+          "query": "id=7044174061&type=menu",
           "scene": null,
           "launchMode": "default"
         }
