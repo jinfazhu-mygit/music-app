@@ -1,12 +1,14 @@
 <!--components/song-item-v2/index.wxml-->
-<view class="item">
+<view class="item" bindtap="handleItemClick" data-id="{{item.id}}">
   <view class="index">{{index}}</view>
   <view class="info">
     <view class="name">{{item.name}}</view>
     <view class="source">
       <image class="icon" src="/assets/images/icons/sq_icon.png"></image>
       <text wx:if="{{item.alia[0]}}">{{item.ar[0].name}} · {{item.alia[0]}}</text>
-      <text wx:else>{{item.ar[0].name}}</text>
+      <text wx:elif="{{item.ar[0]}}">{{item.ar[0].name}}</text>
+      <text wx:elif="{{item.artists[0].name && !item.alias[0]}}">{{item.artists[0].name}}</text>
+      <text wx:else>{{item.artists[0].name}} · {{item.alias[0]}}</text>
     </view>
   </view>
 </view>

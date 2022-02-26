@@ -1,6 +1,14 @@
 /* pages/detail-search/index.wxss */
 page {
   padding: 0 20rpx;
+  padding-top: 56px;
+}
+
+.search {
+  position: fixed;
+  top: 0;
+  left: 20rpx;
+  right: 20rpx;
 }
 
 .key-words {
@@ -18,7 +26,7 @@ page {
 }
 
 .key-words .tag:first-of-type {
-  color: rgb(45, 214, 101);
+  color: #26ce8a;
 }
 
 .suggest {
@@ -30,4 +38,19 @@ page {
   width: 60rpx;
   height: 60rpx;
   display: inline-block;
+}
+
+.suggest .list .item {
+  display: flex;
+  align-items: center;
+  margin: 12rpx 0;
+}
+
+.result .title {
+  font-size: 44rpx;
+  color: #26ce8a;
+}
+
+.result .list {
+
 }

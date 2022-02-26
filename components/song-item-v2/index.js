@@ -25,6 +25,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleItemClick: function(event) {
+      wx.navigateTo({
+        url: `/pages/music-player/index?id=${event.currentTarget.dataset.id}`,
+      })
+    }
   }
 })
