@@ -1,0 +1,46 @@
+/* baseui/nav-bar/index.wxss */
+.nav-bar {
+  display: flex;
+  text-align: center;
+}
+
+.left, .center, .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left .left-arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left .left-arrow .icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.left, .right {
+  width: 120rpx;
+}
+
+.nav .nav-bar .left .left-arrow {
+  display: none;
+}
+
+.left-slot:empty + .left-arrow {
+  display: block !important;
+}
+
+.nav .nav-bar .center .title {
+  display: none;
+}
+
+.center-slot:empty + .title {
+  display: block !important;
+}
+
+.center {
+  flex: 1;
+}

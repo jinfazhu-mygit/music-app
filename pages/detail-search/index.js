@@ -36,15 +36,19 @@ Page({
   // 事件处理
   handleSearchChange: function(event) {
     const searchValue = event.detail;
+    console.log(searchValue);
     this.setData({ searchValue: searchValue });
     if(!searchValue.length) { // 关键字为空
       this.setData({ suggestSongs: [] });
+      // debounceGetSuggest.cancel();
       return
     }
     debounceGetSuggest(searchValue).then(res => {
+      if(!this.data.searchValue) return;
       // 1.获取建议的关键字歌曲
       const suggestSongs = res.result.allMatch;
       this.setData({ suggestSongs });
+      if(!suggestSongs) return;
       // 2.转成node节点
       const suggestKeyWords = suggestSongs.map(item => item.keyword);
       const suggestSongsNodes = [];
@@ -55,6 +59,14 @@ Page({
       this.setData({ suggestSongsNodes });
     })
   },
+  // tag或推荐歌曲点击
+  handleKeywordItemClick: function(event) {
+    this.setData({
+      searchValue: event.currentTarget.dataset.keyword,
+      suggestSongs: []
+    })
+    this.handleSearchAction();
+  },
   // 搜索
   handleSearchAction: function() {
     getSearchResult(this.data.searchValue).then(res => {
@@ -63,11 +75,4 @@ Page({
       })
     })
   },
-  handleKeywordItemClick: function(event) {
-    this.setData({
-      searchValue: event.currentTarget.dataset.keyword,
-      suggestSongs: []
-    })
-    this.handleSearchAction();
-  }
 })
