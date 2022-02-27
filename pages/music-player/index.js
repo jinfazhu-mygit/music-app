@@ -1,7 +1,7 @@
 // pages/music-player/index.js
-import { getSongDetail } from '../../service/api-player';
-
+import { getSongDetail, getSongLyric } from '../../service/api-player';
 import { audioContext } from '../../store/player-store';
+import stringToLyric from '../../utils/string-to-lyric';
 
 const globalData = getApp().globalData;
 
@@ -36,6 +36,20 @@ Page({
     // audioContext.play(); // 立即播放
     audioContext.autoplay = true; // 自动播放
     // 当解码完成
+    this.setupAudioContextListener();
+  },
+
+  getPageData: function(id) {
+    getSongDetail(id).then(res => {
+      this.setData({ currentSong: res.songs[0], durationTime: res.songs[0].dt })
+    })
+    getSongLyric(id).then(res => {
+      const lyricArr = stringToLyric(res.lrc.lyric);
+      console.log(lyricArr)
+    })
+  },
+  // =============== 事件监听 ===============
+  setupAudioContextListener: function() {
     audioContext.onCanplay(() => {
       console.log('可以开始播放了');
       audioContext.play();
@@ -51,19 +65,13 @@ Page({
     })
   },
 
-  getPageData: function(id) {
-    getSongDetail(id).then(res => {
-      this.setData({ currentSong: res.songs[0], durationTime: res.songs[0].dt })
-    })
-  },
-
-  // 事件处理
+  // =============== 事件处理 ===============
   handleSwiperChange: function(event) {
     this.setData({
       currentPage: event.detail.current
     })
   },
-  // 滑块
+  // =============== 滑块 ===============
   handleSliderChange: function(event) {
     const occupy = event.detail.value;
     const currentTime = this.data.durationTime * occupy / 100;
