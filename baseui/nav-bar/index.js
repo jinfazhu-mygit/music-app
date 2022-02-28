@@ -23,6 +23,8 @@ Component({
   },
 
   methods: {
-
+    handleLeftClick: function() {
+      this.triggerEvent('click');
+    }
   }
 })
