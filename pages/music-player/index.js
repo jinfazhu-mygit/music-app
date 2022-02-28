@@ -160,17 +160,22 @@ Page({
       }
     })
     // 获取播放模式
-    playerStore.onStates(['playModeIndex', 'isPlaying'], ({ playModeIndex, isPlaying }) => {
+    playerStore.onState('playModeIndex', (playModeIndex) => {
       if( playModeIndex !== undefined ) {
         this.setData({ playModeIndex: playModeIndex, playModeName: playModeNames[playModeIndex] });
       }
-      if( isPlaying !== undefined ) {
-        console.log(isPlaying);
-        this.setData({ isPlaying, isPlayingName: isPlaying ? 'pause' : 'resume' });
-      }
+      
     })
+    playerStore.onState('isPlaying', this.handleIsPlaying)
   },
-  onUnload: function () {
+  handleIsPlaying: function(isPlaying) {
+    if( isPlaying !== undefined ) {
+      console.log(isPlaying);
+      this.setData({ isPlaying, isPlayingName: isPlaying ? 'pause' : 'resume' });
+    }
+  },
 
+  onUnload: function () {
+    playerStore.offState('isPlaying', this.handleIsPlaying);
   },
 })

@@ -5,7 +5,7 @@ import { getBanners, getSongMenu } from '../../service/api-music';
 import queryRect from '../../utils/query-rect';
 import throtto from '../../utils/throtto';
 
-const throttoedFn = throtto(queryRect, 20); // 节流
+const throttoedFn = throtto(queryRect, 1000, { trailing: true }); // 节流
 
 Page({
 

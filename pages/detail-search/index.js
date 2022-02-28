@@ -69,6 +69,7 @@ Page({
   },
   // 搜索
   handleSearchAction: function() {
+    this.setData({ resultSongs: [] });
     getSearchResult(this.data.searchValue).then(res => {
       this.setData({
         resultSongs: res.result.songs
