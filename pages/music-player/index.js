@@ -14,8 +14,11 @@ Page({
     showLyric: true,
     durationTime: 0,
     currentTime: 0,
+    currentLyricText: "", // 当前歌词
+    currentLyricIndex: 0, 
     sliderValue: 0, // 滑块值
     isSliderChanging: false, // 滑块默认不在滑动
+    lyricInfos: [], // 歌词数组
   },
 
   onLoad: function (options) {
@@ -45,7 +48,8 @@ Page({
     })
     getSongLyric(id).then(res => {
       const lyricArr = stringToLyric(res.lrc.lyric);
-      console.log(lyricArr)
+      console.log(lyricArr);
+      this.setData({ lyricInfos: lyricArr });
     })
   },
   // =============== 事件监听 ===============
@@ -59,8 +63,19 @@ Page({
       const currentTime = audioContext.currentTime * 1000;
       const sliderValue = (currentTime / this.data.durationTime) * 100;
       // console.log(sliderValue)
-      if(!this.data.isSliderChanging) { // 滑动过程中不更新滑块位置，不改currentTime,不滑动才更新
+      // 滑动过程中不更新滑块位置，不改currentTime,不滑动才更新
+      if(!this.data.isSliderChanging) { 
         this.setData({ currentTime, sliderValue });
+      }
+      // 根据当前时间匹配歌词
+      for(let i = 0; i < this.data.lyricInfos.length; i++ ) {
+        if(currentTime < this.data.lyricInfos[i].time) {
+          if(this.data.currentLyricIndex !== i-1) {
+            console.log(this.data.lyricInfos[i-1].lyric);
+            this.setData({ currentLyricText: this.data.lyricInfos[i-1].lyric, currentLyricIndex: i-1 })
+          }
+          break;
+        }
       }
     })
   },

@@ -25,7 +25,7 @@
         <view class="alias">专辑：{{currentSong.alia[0]}}</view>
       </view>
     </view>
-    <view class="lyric" wx:if="{{showLyric}}">我是歌词，哈哈哈哈哈</view>
+    <view class="lyric" wx:if="{{showLyric}}" style="color: #1aad19;">{{currentLyricText}}</view>
     <view class="progress">
       <slider class="slider" 
               block-size="{{12}}"
