@@ -7,8 +7,8 @@ const audioContext = wx.createInnerAudioContext();
 const playerStore = new HYEventStore({
   state: {
     currentSong: {},
-    lyricInfos: [],
     durationTime: 0,
+    lyricInfos: [],
     currentId: 0, // 当前正在播放的歌曲id
 
     currentTime: 0,
@@ -16,13 +16,25 @@ const playerStore = new HYEventStore({
     currentLyricText: "", // 当前需要显示的歌词
 
     playModeIndex: 0, // 播放模式
-    isPlaying: true
+    isPlaying: true,
+
+    currentSongList: [], // 当前歌曲播放列表
+    currentSongIndex: 0 // 当前播放歌曲所在列表下标
   },
   actions: {
+    // 根据id播放相应的歌曲
     playMusicByIdAction(ctx, { id }) {
       if(id !== ctx.currentId) {
 
         ctx.currentId = id;
+        // 修改播放状态
+        ctx.currentSong = {};
+        ctx.durationTime = 0;
+        ctx.lyricInfos = [];
+        ctx.currentTime = 0;
+        ctx.currentLyricIndex = 0;
+        ctx.currentLyricText = "";
+        ctx.isPlaying = true;
         // 获取歌曲数据
         getSongDetail(id).then(res => {
           ctx.currentSong = res.songs[0];
@@ -43,7 +55,6 @@ const playerStore = new HYEventStore({
       }
       this.dispatch('audioContextListenerAction');
     },
-
     audioContextListenerAction(ctx) {
       audioContext.onCanplay(() => {
         console.log('可以开始播放了');
@@ -65,6 +76,8 @@ const playerStore = new HYEventStore({
         }
       })
     },
+
+
     // 播放 暂停功能
     controllMusicPlaying(ctx) {
       ctx.isPlaying = !ctx.isPlaying;

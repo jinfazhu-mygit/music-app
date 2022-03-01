@@ -29,7 +29,10 @@ Page({
     playModeName: "order",
 
     isPlaying: true,
-    isPlayingName: "pause"
+    isPlayingName: "pause",
+
+    currentSongList: [], // 当前歌曲播放列表
+    currentSongIndex: 0 // 当前播放歌曲所在列表下标
   },
 
   onLoad: function (options) {
@@ -139,43 +142,56 @@ Page({
   getPageDataByStoreAction: function(id) {
     playerStore.dispatch("playMusicByIdAction", { id });
     // 获取网络请求相关数据
-    playerStore.onStates(['currentSong', 'durationTime', 'lyricInfos'], ({ currentSong, durationTime, lyricInfos }) => {
-      if (currentSong) this.setData({ currentSong });
-      if (durationTime) this.setData({ durationTime });
-      if (lyricInfos) this.setData({ lyricInfos });
-    })
+    playerStore.onStates(['currentSong', 'durationTime', 'lyricInfos'], this.handleRequestCallback);
     // 获取audioContext相关数据
-    playerStore.onStates(["currentTime", "currentLyricIndex", "currentLyricText"],({ currentTime, currentLyricIndex, currentLyricText }) => {
-      if( currentLyricIndex ) {
-        this.setData({ currentLyricIndex, scrollTop: currentLyricIndex * 35 })
-      }
-      if(currentLyricText) {
-        this.setData({ currentLyricText });
-      }
-      if(currentTime) {
-        if(!this.data.isSliderChanging) {
-          this.setData({ sliderValue: currentTime / this.data.durationTime * 100 });
-        }
-        this.setData({ currentTime });
-      }
-    })
+    playerStore.onStates(["currentTime", "currentLyricIndex", "currentLyricText"], this.handleAudioContext);
     // 获取播放模式
-    playerStore.onState('playModeIndex', (playModeIndex) => {
-      if( playModeIndex !== undefined ) {
-        this.setData({ playModeIndex: playModeIndex, playModeName: playModeNames[playModeIndex] });
-      }
-      
-    })
-    playerStore.onState('isPlaying', this.handleIsPlaying)
+    playerStore.onStates(['playModeIndex', 'isPlaying'], this.handlePlayMode);
+    // 获取播放列表以及所在下标
+    playerStore.onStates([ 'currentSongList', 'currentSongIndex' ], this.handlePlayList);
   },
-  handleIsPlaying: function(isPlaying) {
+  // 网络请求数据相关回调
+  handleRequestCallback: function({ currentSong, durationTime, lyricInfos }) {
+    if (currentSong) this.setData({ currentSong });
+    if (durationTime) this.setData({ durationTime });
+    if (lyricInfos) this.setData({ lyricInfos });
+  },
+  // audioContext相关回调
+  handleAudioContext: function({ currentTime, currentLyricIndex, currentLyricText }) {
+    if( currentLyricIndex ) {
+      this.setData({ currentLyricIndex, scrollTop: currentLyricIndex * 35 })
+    }
+    if(currentLyricText) {
+      console.log('1231')
+      this.setData({ currentLyricText });
+    }
+    if(currentTime) {
+      if(!this.data.isSliderChanging) {
+        this.setData({ sliderValue: currentTime / this.data.durationTime * 100 });
+      }
+      this.setData({ currentTime });
+    }
+  },
+  // 播放模式相关回调
+  handlePlayMode: function({playModeIndex, isPlaying}) {
+    if( playModeIndex !== undefined ) {
+      this.setData({ playModeIndex: playModeIndex, playModeName: playModeNames[playModeIndex] });
+    }
     if( isPlaying !== undefined ) {
       console.log(isPlaying);
       this.setData({ isPlaying, isPlayingName: isPlaying ? 'pause' : 'resume' });
     }
   },
+  // 播放列表相关回调
+  handlePlayList: function({ currentSongList, currentSongIndex }) {
+    if(currentSongList !== undefined) { this.setData({ currentSongList }); }
+    if(currentSongIndex !== undefined) { this.setData({ currentSongIndex }); }
+  },
 
   onUnload: function () {
-    playerStore.offState('isPlaying', this.handleIsPlaying);
+    playerStore.offStates(['currentSong', 'durationTime', 'lyricInfos'], this.handleRequestCallback);
+    playerStore.offStates(['playModeIndex', 'isPlaying'], this.handlePlayMode);
+    playerStore.offStates(['currentTime', 'currentLyricIndex', 'currentLyricText'], this.handleAudioContext);
+    playerStore.offStates([ 'currentSongList', 'currentSongIndex' ], this.handlePlayList);
   },
 })
