@@ -42,11 +42,11 @@
       <image class="btn btn-order" 
              src="/assets/images/player/play_{{playModeName}}.png"
              bindtap="handleModeClick"></image>
-      <image class="btn btn-prev" src="/assets/images/player/play_prev.png"></image>
+      <image class="btn btn-prev" src="/assets/images/player/play_prev.png" bindtap="handlePrevClick"></image>
       <image class="btn btn-pause" 
              src="/assets/images/player/play_{{isPlayingName}}.png"
              bindtap="handlePauseClick"></image>
-      <image class="btn btn-next" src="/assets/images/player/play_next.png"></image>
+      <image class="btn btn-next" src="/assets/images/player/play_next.png" bindtap="handleNextClick"></image>
       <image class="btn btn-music" src="/assets/images/player/play_music.png"></image>
     </view>
   </swiper-item>

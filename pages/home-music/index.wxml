@@ -42,3 +42,21 @@
     </block>
   </view>
 </view>
+
+
+<!-- 小播放栏 -->
+<view class="play-bar-placeholder" wx:if="{{currentSong.id}}"></view>
+<view class="play-bar" bindtap="playBarClick" wx:if="{{currentSong.id}}">
+  <view class="left">
+    <image 
+      class="album albu-anim" 
+      style="animation-play-state: {{isPlaying? 'running': 'paused'}};"
+      mode="aspectFill" 
+      src="{{currentSong.al.picUrl}}"></image>
+    <view class="name">{{currentSong.name}}</view>
+  </view>
+  <view class="right">
+    <image class="icon play" catchtap="handleBtnClick" src="/assets/images/music/{{isPlaying?'pause' : 'play'}}_icon.png"></image>
+    <image class="icon playlist" src="/assets/images/music/playlist_icon.png"></image>
+  </view>
+</view>

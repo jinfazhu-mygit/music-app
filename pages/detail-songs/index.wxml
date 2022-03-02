@@ -5,7 +5,7 @@
 <block wx:if="{{type === 'menu'}}">
   <song-detail-header songInfo="{{songInfo}}"></song-detail-header>
 </block>
- 
+
 <view class="list">
   <block wx:for="{{songInfo.tracks}}" wx:key="id">
     <song-item-v2 item="{{item}}" index="{{index+1}}" list="{{songInfo.tracks}}"></song-item-v2>

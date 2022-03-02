@@ -112,7 +112,7 @@ Page({
   handleSliderChange: function(event) {
     const occupy = event.detail.value;
     const currentTime = this.data.durationTime * occupy / 100;
-    audioContext.stop();
+    // audioContext.pause();
     audioContext.seek(currentTime / 1000);
     this.setData({ currentTime, sliderValue: occupy, isSliderChanging: false });
   },
@@ -137,6 +137,13 @@ Page({
     // this.data.isPlayingName === "pause" ? this.setData({ isPlayingName: "resume" }) : this.setData({ isPlayingName: "pause" });
     // playerStore.setState('isPlaying', !this.data.isPlaying);
     playerStore.dispatch("controllMusicPlaying");
+  },
+  // 上一首下一首
+  handlePrevClick: function() {
+    playerStore.dispatch("playMusicAction", false);
+  },
+  handleNextClick: function() {
+    playerStore.dispatch("playMusicAction");
   },
   // 请求数据
   getPageDataByStoreAction: function(id) {

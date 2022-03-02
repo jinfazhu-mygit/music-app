@@ -5,7 +5,11 @@
     "pages/detail-video/index",
     "pages/detail-search/index",
     "pages/detail-songs/index",
-    "pages/music-player/index"
+    "pages/music-player/index",
+    "pages/home-profile/index"
+  ],
+  "requiredBackgroundModes": [
+    "audio"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,6 +30,12 @@
         "text": "视频",
         "iconPath": "assets/images/tabbar/video_normal.png",
         "selectedIconPath": "assets/images/tabbar/video_active.png"
+      },
+      {
+        "pagePath": "pages/home-profile/index",
+        "text": "我的",
+        "iconPath": "assets/images/tabbar/profile_normal.png",
+        "selectedIconPath": "assets/images/tabbar/profile_active.png"
       }
     ]
   },
