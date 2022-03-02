@@ -1,4 +1,5 @@
 import { getTopMV } from '../../service/api-video';
+import { playerStore } from '../../store/index';
 
 Page({
     data: {
@@ -28,8 +29,9 @@ Page({
     handleVideoItemClick: function(event) {
         const id = event.currentTarget.dataset.item.id;
         wx.navigateTo({
-          url: '/pages/detail-video/index?id=' + id,
+          url: '/packageDetail/pages/detail-video/index?id=' + id,
         })
+        playerStore.dispatch("controllMusicPlaying");
     },
     // 下拉刷新
     onPullDownRefresh: async function() {

@@ -34,7 +34,7 @@ Component({
     handleItemClick: function(event) {
       // 跳转至播放页
       wx.navigateTo({
-        url: `/pages/music-player/index?id=${event.currentTarget.dataset.id}`,
+        url: `/packagePlayer/pages/music-player/index?id=${event.currentTarget.dataset.id}`,
       })
       // 提交播放列表
       playerStore.setState('currentSongList', this.properties.list);

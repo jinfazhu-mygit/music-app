@@ -1,7 +1,7 @@
 // pages/detail-search/index.js
-import { getSearchHot, getSearchSuggest, getSearchResult } from '../../service/api.search';
-import debounce from '../../utils/debounce';
-import stringToNodes from '../../utils/string-to-nodes';
+import { getSearchHot, getSearchSuggest, getSearchResult } from '../../../service/api.search';
+import debounce from '../../../utils/debounce';
+import stringToNodes from '../../../utils/string-to-nodes';
 
 const debounceGetSuggest = debounce(getSearchSuggest, 450);
 

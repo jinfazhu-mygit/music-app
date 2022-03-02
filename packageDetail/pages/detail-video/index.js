@@ -1,5 +1,6 @@
 // pages/detail-video/index.js
-import { getMVURL, getMVDetail, getRelatedVideos } from '../../service/api-video';
+import { getMVURL, getMVDetail, getRelatedVideos } from '../../../service/api-video';
+import { playerStore } from '../../../store/index';
 
 Page({
 
@@ -49,5 +50,9 @@ Page({
         relatedMv: res.data
       })
     })
+  },
+
+  onUnload: function() {
+    playerStore.dispatch("controllMusicPlaying");
   }
 })

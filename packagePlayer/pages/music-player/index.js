@@ -1,6 +1,6 @@
 // pages/music-player/index.js
 // import { getSongDetail, getSongLyric } from '../../service/api-player';
-import { audioContext, playerStore } from '../../store/player-store';
+import { audioContext, playerStore } from '../../../store/player-store';
 // import stringToLyric from '../../utils/string-to-lyric';
 
 const playModeNames = ["order", "repeat", "random"];

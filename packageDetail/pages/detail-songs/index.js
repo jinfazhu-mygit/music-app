@@ -1,6 +1,6 @@
 // pages/detail-songs/index.js
-import { rankingStore } from '../../store/index';
-import { getPlayListDetail } from '../../service/api-music';
+import { rankingStore } from '../../../store/index';
+import { getPlayListDetail } from '../../../service/api-music';
 
 Page({
 

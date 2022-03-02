@@ -35,7 +35,7 @@ Component({
       // 页面跳转
       const id = event.currentTarget.dataset.id;
       wx.navigateTo({
-        url: `/pages/music-player/index?id=${id}`,
+        url: `/packagePlayer/pages/music-player/index?id=${id}`,
       })
       // 获取当前播放歌曲列表，以及index,提交这两个状态
       playerStore.setState('currentSongList', this.properties.list);

@@ -28,7 +28,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      // playerStore.dispatch("playMusicByIdAction", { id: 1907766514 })
       // 获取页面数据
       this.getPageData();
       // 发起共享数据的请求(推荐歌曲列表)
@@ -60,7 +59,7 @@ Page({
     // 事件处理
     handleSearchClick: function(event) {
         wx.navigateTo({
-          url: '/pages/detail-search/index',
+          url: '/packageDetail/pages/detail-search/index',
         })
     },
     // 轮播图组件加载完毕，获取图片高度，来设置轮播图高度
@@ -89,13 +88,22 @@ Page({
     },
     playBarClick: function() {
       wx.navigateTo({
-        url: `/pages/music-player/index?id=${this.data.currentSong.id}`,
+        url: `/packagePlayer/pages/music-player/index?id=${this.data.currentSong.id}`,
       })
+    },
+
+    // 下拉刷新
+    onPullDownRefresh: function() {
+      this.getPageData();
+      rankingStore.dispatch('getRankingDataAction');
+      this.setupPlayerStoreListener();
+      wx.hideNavigationBarLoading();
+      wx.stopPullDownRefresh();
     },
 
     navigateToDetailSongsPage: function(rankingName) {
       wx.navigateTo({
-        url: `/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
+        url: `/packageDetail/pages/detail-songs/index?ranking=${rankingName}&type=rank`,
       })
     },
 
